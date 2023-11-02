@@ -14,7 +14,6 @@ export default class Round{
   }
 
   round() {
-    console.log(this.players)
     //Place checker
     let place = new Place_checker(this.players[0].username + ", place your marker " + this.players[0].marker + " on (A-G): ")
     if (place.placeCheckerOnBoard(this.players[0], this.board)) {
@@ -27,46 +26,18 @@ export default class Round{
     console.log("Placed checkers: ", this.counter)
 
     //check winner
-    let winner = new Check_Winner(this.board).check(this.players)
+    this.winner = new Check_Winner(this.board).check(this.players)
 
     if (this.counter == 42) {
       console.log("\nGame over - no won")
-    } else if (winner !== "") {
-      console.log("\nGame over", "\nThe winner is: ", winner)
+    } else if (this.winner !== "") {
+      console.log("\nGame over", "\nThe winner is: ", this.winner)
     } else {
       this.round()
     }
-
-
-
-    console.log(this.players)
-    console.log(this.board)
-
-    /*     this.count += placeMarker.counter
-    p("Placed markers: ", this.count)
-
-    let checkWin = new CheckWin()
-    let winner = checkWin.check(this.setPlayer.players)
-    if (this.count == 42) {
-      p("\nGame over - no won")
-    } else if (winner !== "") {
-      p("\nGame over", "\nThe winner is: ", winner)
-    } else {
-      this.round()
-    } */
   }
 
-/*   resetRound() {
-    this.count = 0
-    this.board = new GameField()._gameField
-    p(this.board)
-  } */
-
-
-
-
-
   get winner() {
-    return winner
+    return this.winner
   }
 }

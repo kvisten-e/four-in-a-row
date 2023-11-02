@@ -16,9 +16,8 @@ export default class Check_Winner {
     if (this.checkHorizontally() !== null || this.checkVertical() !== null /* || this.checkDiagonally() !== "" */) {
       for (let player of players) {
         for (let playerObj in player) {
-          console.log(playerObj)
           if (player[playerObj] === this.winnerMarker) {
-            this.winner = player.name
+            this.winner = player.username
           }
         }
       }
@@ -52,7 +51,6 @@ export default class Check_Winner {
         if (this.board[u].charAt(i) == this.board[u + 1].charAt(i) && this.board[u].charAt(i) !== " ") {
           countSame++
           if (countSame == 4) {
-            console.log("inni i verti: ", this.board[u].charAt(i))
             this.winnerMarker = this.board[u].charAt(i)
             return this.winnerMarker
           }
