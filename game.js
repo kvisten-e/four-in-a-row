@@ -10,10 +10,10 @@ let playAgain
 
 
 //Enter username and place in players
-/* players.push(new Players(prompt("Enter username for player 1: ").toLowerCase()))
-players.push(new Players(prompt("Enter username for player 2: ").toLowerCase())) */
-players.push({ username: 'kvisten', wins: '1', losses: '2' },)
-players.push({ username: 'karl', wins: '3', losses: '2' })
+players.push(new Players(prompt("Enter username for player 1: ").toLowerCase()))
+players.push(new Players(prompt("Enter username for player 2: ").toLowerCase()))
+/* players.push({ username: 'kvisten', wins: '1', losses: '2' },)
+players.push({ username: 'karl', wins: '3', losses: '2' }) */
 
 // Add marker to players
 Object.assign(players[0], { marker: "X" })
@@ -31,7 +31,7 @@ do {
   for (let player of players) {
   delete player.marker
   }
-  
+
   new updateUserData(players)
 }
 

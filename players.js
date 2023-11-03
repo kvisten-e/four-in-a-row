@@ -1,7 +1,8 @@
-import { appendFileSync, readFileSync } from "node:fs"
+import { appendFileSync, readFileSync, writeFileSync  } from "node:fs"
 
 let usersData = readFileSync('data/users.csv', 'utf8')
 let usersDataArr = usersData.split('\n')
+console.log("usersDataArr start: ", usersDataArr)
 
 export class Players{
   username
@@ -25,7 +26,8 @@ export class Players{
       }
     }
     if (!foundUser) {
-      appendFileSync('data/users.csv', `\n${this.username},${this.wins},${this.losses}`, 'utf8')
+      // appendFileSync('data/users.csv', `${this.username},${this.wins},${this.losses}\n`, 'utf8')
+      usersDataArr.push(`${this.username},${this.wins},${this.losses}`)
     }
   }
 }
@@ -40,7 +42,6 @@ export class updateUserData {
 //Uppdatera users.csv sidan---- sista kvar här nedan
 
   createNewDataArr() {
-    console.log("usersDataArr ", usersDataArr)
     let index = 0
     for (let user of usersDataArr){
       user = user.split(',')
@@ -48,13 +49,18 @@ export class updateUserData {
         if (player.username == user[0]) {
           user[1] = player.wins
           user[2] = player.losses
-          console.log("Uppdaterad user: ", user.toString())
-          console.log("Index: " , index)
           usersDataArr.splice(index,1,user.toString())
         }
       }
       index++
     }
+    console.log("usersDataArr new: ", usersDataArr)
+    this.puchNewDataToUsersCsv()
   }
 
+  puchNewDataToUsersCsv() {
+    writeFileSync('data/users.csv', '', 'utf8')
+    appendFileSync('data/users.csv', usersDataArr.join('\n'), 'utf8')
+  }
 }
+
