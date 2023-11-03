@@ -14,18 +14,15 @@ export default class Round{
   }
 
   round() {
-    //Place checker
     let place = new Place_checker(this.players[0].username + ", place your marker " + this.players[0].marker + " on (A-G): ")
     if (place.placeCheckerOnBoard(this.players[0], this.board)) {
       this.counter ++
       this.players.unshift(this.players.pop())
     }
-    //update board
     this.board = place.board
-    //write out round counter
+
     console.log("Placed checkers: ", this.counter)
 
-    //check winner
     this.winner = new Check_Winner(this.board).check(this.players)
 
     if (this.counter == 42) {

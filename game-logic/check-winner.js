@@ -1,5 +1,3 @@
-
-
 export default class Check_Winner {
 
   player1 = "X"
@@ -24,7 +22,6 @@ export default class Check_Winner {
     }
     return this.winner
   }
-
 
   checkHorizontally() {
     for (let i = 0; i < this.board.length - 1; i++) {
@@ -67,10 +64,6 @@ export default class Check_Winner {
     /* Hittar ingen lösning */
 
   }
-
-
-
-
 
   filter_list(arr) {
     return arr.filter(element => element !== '|');

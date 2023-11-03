@@ -39,8 +39,6 @@ export class updateUserData {
     this.createNewDataArr() 
   }
 
-//Uppdatera users.csv sidan---- sista kvar här nedan
-
   createNewDataArr() {
     let index = 0
     for (let user of usersDataArr){
@@ -54,7 +52,6 @@ export class updateUserData {
       }
       index++
     }
-
     this.puchNewDataToUsersCsv()
   }
 

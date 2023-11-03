@@ -9,27 +9,22 @@ let gameBoard
 let playAgain
 
 
-//Enter username and place in players
 players.push(new Players(prompt("Enter username for player 1: ").toLowerCase()))
 players.push(new Players(prompt("Enter username for player 2: ").toLowerCase()))
 
-// Add marker to players
 Object.assign(players[0], { marker: "X" })
 Object.assign(players[1], { marker: "O" })
 
 do {
-  //Start new round
   let getWinner = startGame()
-  //update resualt
+
   updatePlayerData(getWinner)
-  //play again?
+
   playAgain = prompt("\nThat was fun, play again? (Y): ").toUpperCase()
 } while (playAgain === "Y") {
-
   for (let player of players) {
   delete player.marker
   }
-
   new updateUserData(players)
 }
 
@@ -37,13 +32,11 @@ do {
 
 
 function startGame(){
-  //import game-board
   gameBoard = new GameBoard().Board
 
   console.log(`\n  Starting game\n\n       |\n       |\n       |\n       |\n       |\n       |\n       |\n       ▼\n`)
 
   console.log(gameBoard)
-  //Start round
   let round = new Round(players, gameBoard)
   return round.winner
 }
@@ -60,4 +53,3 @@ function updatePlayerData(winner) {
 
 
 
-//play again

@@ -8,7 +8,4 @@ export default class GameBoard {
     '| | | | | | | |',
     ' A B C D E F G'
   ]
-
-
-
 }
