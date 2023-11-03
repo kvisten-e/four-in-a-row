@@ -1,4 +1,4 @@
-import Players from "./players.js";
+import {Players, updateUserData} from "./players.js";
 import Round from "./game-logic/round.js";
 import PromptSync from "prompt-sync";
 import GameBoard from "./game-board.js";
@@ -27,8 +27,14 @@ do {
   //play again?
   playAgain = prompt("That was fun, play again? (Y): ").toUpperCase()
 } while (playAgain === "Y") {
-  console.log("slut")
+
+  for (let player of players) {
+  delete player.marker
+  }
+  
+  new updateUserData(players)
 }
+
 
 
 
