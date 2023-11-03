@@ -2,7 +2,6 @@ import { appendFileSync, readFileSync, writeFileSync  } from "node:fs"
 
 let usersData = readFileSync('data/users.csv', 'utf8')
 let usersDataArr = usersData.split('\n')
-console.log("usersDataArr start: ", usersDataArr)
 
 export class Players{
   username
@@ -19,6 +18,7 @@ export class Players{
     for (let user of usersDataArr) {
       user = user.split(",")
       if (user[0] == this.username) {
+        console.log(`\nWelcome back ${user[0]}. \nStats: wins = ${user[1]} losses = ${user[2]}\n`)
         this.wins = user[1]
         this.losses = user[2]
         foundUser = true
@@ -26,8 +26,8 @@ export class Players{
       }
     }
     if (!foundUser) {
-      // appendFileSync('data/users.csv', `${this.username},${this.wins},${this.losses}\n`, 'utf8')
       usersDataArr.push(`${this.username},${this.wins},${this.losses}`)
+      console.log(`\nNew user: ${this.username}, welcome!\n`)
     }
   }
 }
@@ -54,7 +54,7 @@ export class updateUserData {
       }
       index++
     }
-    console.log("usersDataArr new: ", usersDataArr)
+
     this.puchNewDataToUsersCsv()
   }
 

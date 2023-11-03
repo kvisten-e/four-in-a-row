@@ -12,8 +12,6 @@ let playAgain
 //Enter username and place in players
 players.push(new Players(prompt("Enter username for player 1: ").toLowerCase()))
 players.push(new Players(prompt("Enter username for player 2: ").toLowerCase()))
-/* players.push({ username: 'kvisten', wins: '1', losses: '2' },)
-players.push({ username: 'karl', wins: '3', losses: '2' }) */
 
 // Add marker to players
 Object.assign(players[0], { marker: "X" })
@@ -25,7 +23,7 @@ do {
   //update resualt
   updatePlayerData(getWinner)
   //play again?
-  playAgain = prompt("That was fun, play again? (Y): ").toUpperCase()
+  playAgain = prompt("\nThat was fun, play again? (Y): ").toUpperCase()
 } while (playAgain === "Y") {
 
   for (let player of players) {
@@ -41,6 +39,9 @@ do {
 function startGame(){
   //import game-board
   gameBoard = new GameBoard().Board
+
+  console.log(`\n  Starting game\n\n       |\n       |\n       |\n       |\n       |\n       |\n       |\n       ▼\n`)
+
   console.log(gameBoard)
   //Start round
   let round = new Round(players, gameBoard)

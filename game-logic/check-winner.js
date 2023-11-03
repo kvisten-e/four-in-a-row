@@ -13,7 +13,7 @@ export default class Check_Winner {
   }
 
   check(players) {
-    if (this.checkHorizontally() !== null || this.checkVertical() !== null /* || this.checkDiagonally() !== "" */) {
+    if (this.checkHorizontally() !== null || this.checkVertical() !== null || this.checkDiagonally() !== "") {
       for (let player of players) {
         for (let playerObj in player) {
           if (player[playerObj] === this.winnerMarker) {
@@ -62,10 +62,15 @@ export default class Check_Winner {
     return this.winnerMarker = null
   }
 
-/*   checkDiagonally() {
-    this.winnerMarker = ""
-    return this.winnerMarker
-  } */
+  checkDiagonally() {
+
+    /* Hittar ingen lösning */
+
+  }
+
+
+
+
 
   filter_list(arr) {
     return arr.filter(element => element !== '|');
