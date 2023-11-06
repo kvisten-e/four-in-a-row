@@ -23,18 +23,16 @@ do {
   playAgain = prompt("\nThat was fun, play again? (Y): ").toUpperCase()
 } while (playAgain === "Y") {
   for (let player of players) {
-  delete player.marker
+    delete player.marker
   }
   new updateUserData(players)
 }
 
 
-
-
-function startGame(){
+function startGame() {
   gameBoard = new GameBoard().Board
-
-  console.log(`\n  Starting game\n\n       |\n       |\n       |\n       |\n       |\n       |\n       |\n       ▼\n`)
+  
+  startingGameText()
 
   console.log(gameBoard)
   let round = new Round(players, gameBoard)
@@ -50,6 +48,9 @@ function updatePlayerData(winner) {
     }
   }
 }
-
+  
+function startingGameText() {
+  console.log(`\n  Starting game\n\n       |\n       |\n       |\n       |\n       |\n       |\n       |\n       ▼\n`)
+}
 
 
