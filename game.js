@@ -20,8 +20,8 @@ do {
 
   updatePlayerData(getWinner)
 
-  playAgain = prompt("\nThat was fun, play again? (Y): ").toUpperCase()
-} while (playAgain === "Y") {
+  playAgain = prompt("\nThat was fun, play again? (y): ").toLowerCase()
+} while (playAgain === "y") {
   for (let player of players) {
     delete player.marker
   }
@@ -40,13 +40,20 @@ function startGame() {
 }
 
 function updatePlayerData(winner) {
-  for (let player of players) {
-    if (winner == player.username) {
-      player.wins = (Number(player.wins) + 1).toString()
-    } else {
-      player.losses = (Number(player.losses) + 1).toString()
-    }
+  if (winner !== "") {
+    for (let player of players) {
+      if (winner == player.username) {
+        player.wins = (Number(player.wins) + 1).toString()
+      } else {
+        player.losses = (Number(player.losses) + 1).toString()
+      }
+    }    
+  } else {
+    for (let player of players) {
+      player.draw = (Number(player.draw) + 1).toString()
+    } 
   }
+
 }
   
 function startingGameText() {

@@ -4,7 +4,7 @@ import Check_Winner from "./check-winner.js"
 export default class Round{
   players = []
   board
-  winner 
+  winner = ""
   counter = 0
 
   constructor(players, board) {

@@ -96,7 +96,6 @@ export default class Check_Winner {
       for (let y = yy; y > 0; y--) {
         if (this.board[y][x] == this.board[y - 1][x + 2] && this.board[y][x] !== ' ') {
           count++
-          console.log("count", count)
           if (count == 4) {
             return this.winnerMarker = this.board[y][x]
           }

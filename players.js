@@ -7,6 +7,7 @@ export class Players{
   username
   wins = 0
   losses = 0
+  draw = 0
 
   constructor(username) {
     this.username = username
@@ -18,7 +19,7 @@ export class Players{
     for (let user of usersDataArr) {
       user = user.split(",")
       if (user[0] == this.username) {
-        console.log(`\nWelcome back ${user[0]}. \nStats: wins = ${user[1]} losses = ${user[2]}\n`)
+        console.log(`\nWelcome back ${user[0]}. \nStats: wins = ${user[1]} losses = ${user[2]} draw = ${user[3]}\n`)
         this.wins = user[1]
         this.losses = user[2]
         foundUser = true
@@ -26,7 +27,7 @@ export class Players{
       }
     }
     if (!foundUser) {
-      usersDataArr.push(`${this.username},${this.wins},${this.losses}`)
+      usersDataArr.push(`${this.username},${this.wins},${this.losses},${this.draw}`)
       console.log(`\nNew user: ${this.username}, welcome!\n`)
     }
   }
@@ -47,6 +48,7 @@ export class updateUserData {
         if (player.username == user[0]) {
           user[1] = player.wins
           user[2] = player.losses
+          user[3] = player.draw
           usersDataArr.splice(index,1,user.toString())
         }
       }

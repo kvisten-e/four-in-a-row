@@ -1,8 +1,8 @@
-(username,wins,losses) 
+(username,wins,losses,draw) 
 
-kvisten,4,4
-dragon123,3,2
-charlieS,1,0
-abbetabbe,0,3
-playerslayer,1,0
-player321,0,1
+kvisten,5,7,1
+dragon123,3,2,0
+charlieS,1,0,0
+abbetabbe,2,5,1
+playerslayer,1,0,0
+player321,0,1,0
