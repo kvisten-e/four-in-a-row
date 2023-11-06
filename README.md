@@ -14,7 +14,7 @@ Welcome to the "Four in a Row" game! This is a classic two-player game where the
 
 ## Features
 
-- Win detection for four in a row (logic for diagonally is not done yet)
+- Win detection for four in a row
 - Turn-based gameplay
 - Restart the game
 - Usernames saved locally with wins & losses
