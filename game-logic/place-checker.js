@@ -28,17 +28,17 @@ export default class Place_checker {
         this.boardArr.splice([this.letterToNumber], 1, player.marker)
         this.boardSaved.splice(i, 1, this.boardArr.join(""))
         bool = true
+        console.log(this.boardSaved)
         break
       }
     }
-    console.log(this.boardSaved)
     return bool
   }
 
   chooseLetter(letter) {
     this.letter = prompt(letter).toUpperCase()
     let letterContainer = "ABCDEFG"
-    if (!letterContainer.includes(this.letter)) {
+    if (!letterContainer.includes(this.letter) || this.letter === ' ' || this.letter === '') {
       this.chooseLetter("Choose between A-G: ")
     }
   }

@@ -14,11 +14,19 @@ export default class Round{
   }
 
   round() {
-    let place = new Place_checker(this.players[0].username + ", place your marker " + this.players[0].marker + " on (A-G): ")
-    if (place.placeCheckerOnBoard(this.players[0], this.board)) {
-      this.counter ++
-      this.players.unshift(this.players.pop())
-    }
+    let place = new Place_checker(`${this.players[0].username}, place your marker ${this.players[0].marker} on (A-G): `)
+    let bool = false
+    do {
+      if (place.placeCheckerOnBoard(this.players[0], this.board)) {
+        this.counter++
+        this.players.unshift(this.players.pop())
+        bool = false
+      } else {
+        place = new Place_checker(`${place.letter} is full, choose again: `)
+        bool = true
+      }
+    }while(bool)
+
     this.board = place.board
 
     console.log("Placed checkers: ", this.counter)

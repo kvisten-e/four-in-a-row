@@ -9,8 +9,15 @@ let gameBoard
 let playAgain
 
 
-players.push(new Players(prompt("Enter username for player 1: ").toLowerCase()))
-players.push(new Players(prompt("Enter username for player 2: ").toLowerCase()))
+for (let i = 1; i <= 2; i++){
+  let nameLength = prompt(`Enter username for player ${i}: `).toLowerCase()
+  if (nameLength.length <= 20) {
+    players.push(new Players(nameLength))
+  } else {
+    console.log("Max length of username is 20\n")
+    i--
+  }
+}
 
 Object.assign(players[0], { marker: "X" })
 Object.assign(players[1], { marker: "O" })
@@ -56,8 +63,8 @@ function updatePlayerData(winner) {
 
 }
   
-function startingGameText() {
-  console.log(`\n  Starting game\n\n       |\n       |\n       |\n       |\n       |\n       |\n       |\n       ▼\n`)
+function startingGameText() { 
+  console.log(`\n     Starting game\n\n          |\n          |\n          |\n          |\n          |\n          |\n          |\n          ▼\n`)
 }
 
 
