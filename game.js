@@ -8,45 +8,46 @@ let players = []
 let gameBoard
 let playAgain
 
+async function main() {
 
-for (let i = 1; i <= 2; i++){
-  let nameLength = prompt(`Enter username for player ${i}: `).toLowerCase()
-  if (nameLength.length <= 20) {
-    players.push(new Players(nameLength))
-  } else {
-    console.log("Max length of username is 20\n")
-    i--
+  for (let i = 1; i <= 2; i++) {
+    let username = prompt(`Enter username for player ${i}: `).toLowerCase()
+    if (username.length <= 20) {
+      players.push(new Players(username))
+    } else {
+      console.log("Max length of username is 20\n")
+      i--
+    }
   }
+
+  Object.assign(players[0], { marker: "X" })
+  Object.assign(players[1], { marker: "O" })
+
+  do {
+    let getWinner = await startGame()
+
+    updatePlayerScore(getWinner)
+
+    playAgain = prompt("\nThat was fun, play again? (y): ").toLowerCase()
+  } while (playAgain === "y") {
+    for (let player of players) {
+      delete player.marker
+    }
+    new updateUserData(players)
+  }  
 }
 
-Object.assign(players[0], { marker: "X" })
-Object.assign(players[1], { marker: "O" })
-
-do {
-  let getWinner = startGame()
-
-  updatePlayerData(getWinner)
-
-  playAgain = prompt("\nThat was fun, play again? (y): ").toLowerCase()
-} while (playAgain === "y") {
-  for (let player of players) {
-    delete player.marker
-  }
-  new updateUserData(players)
-}
-
-
-function startGame() {
+async function startGame() {
   gameBoard = new GameBoard().Board
   
-  startingGameText()
+  await startingGameText()
 
   console.log(gameBoard)
   let round = new Round(players, gameBoard)
   return round.winner
 }
 
-function updatePlayerData(winner) {
+function updatePlayerScore(winner) {
   if (winner !== "") {
     for (let player of players) {
       if (winner == player.username) {
@@ -63,8 +64,28 @@ function updatePlayerData(winner) {
 
 }
   
-function startingGameText() { 
-  console.log(`\n     Starting game\n\n          |\n          |\n          |\n          |\n          |\n          |\n          |\n          ▼\n`)
+async function startingGameText() { 
+  let count = 0  
+  console.log(`\n     Starting game`)
+
+  await new Promise((resolve) => {
+    let setPipe = setInterval(pipe,800)
+    
+    function pipe() {      
+      
+      if (count == 5) {
+        console.log(`          ▼\n`)
+      } else if(count < 5 ){
+        console.log('          |')
+      }
+      count++
+
+      if (count > 6) {
+        clearInterval(setPipe)
+        resolve()
+      }
+    }   
+  })
 }
 
-
+main()
