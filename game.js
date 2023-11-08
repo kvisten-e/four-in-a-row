@@ -33,7 +33,8 @@ async function main() {
     for (let player of players) {
       delete player.marker
     }
-    new updateUserData(players)
+    let data = new updateUserData(players)
+    data.showUserResult()
   }  
 }
 
@@ -69,21 +70,20 @@ async function startingGameText() {
   console.log(`\n     Starting game`)
 
   await new Promise((resolve) => {
-    let setPipe = setInterval(pipe,800)
+    let setPipe = setInterval(pipe,500)
     
     function pipe() {      
       
-      if (count == 5) {
+      if (count == 4) {
         console.log(`          ▼\n`)
-      } else if(count < 5 ){
+      } else if(count < 4 ){
         console.log('          |')
+      } else {
+        clearInterval(setPipe)
+        resolve()        
       }
       count++
 
-      if (count > 6) {
-        clearInterval(setPipe)
-        resolve()
-      }
     }   
   })
 }

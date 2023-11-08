@@ -61,5 +61,12 @@ export class updateUserData {
     writeFileSync('data/users.csv', '', 'utf8')
     appendFileSync('data/users.csv', usersDataArr.join('\n'), 'utf8')
   }
+
+  showUserResult() {
+    console.log('\nGame ended\n')
+    for (let player of this.players) {
+      console.log(`\nResult ${player.username}: \nwins = ${player.wins}\nlosses = ${player.losses}\ndraw = ${player.draw}`)
+    }
+  }
 }
 
